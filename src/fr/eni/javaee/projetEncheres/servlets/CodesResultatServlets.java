@@ -13,4 +13,6 @@ public class CodesResultatServlets {
 	public static final int FORMAT_RUE_ERREUR=30007;
 	public static final int FORMAT_CODE_POSTAL_ERREUR=30008;
 	public static final int FORMAT_VILLE_ERREUR=30009;
+	
+	public static final int FORMAT_FILTRE_ACCUEIL_ERREUR=30010;
 }

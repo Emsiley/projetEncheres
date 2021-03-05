@@ -2,11 +2,14 @@ package fr.eni.javaee.projetEncheres.bll;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 import fr.eni.javaee.projetEncheres.BusinessException;
+import fr.eni.javaee.projetEncheres.bo.Accueil;
 import fr.eni.javaee.projetEncheres.bo.Article;
 import fr.eni.javaee.projetEncheres.bo.Retrait;
 import fr.eni.javaee.projetEncheres.dal.ArticleDAO;
+import fr.eni.javaee.projetEncheres.dal.ArticleDAOJdbcImpl;
 import fr.eni.javaee.projetEncheres.dal.CodesResultatDAL;
 import fr.eni.javaee.projetEncheres.dal.DAOFactory;
 import fr.eni.javaee.projetEncheres.bll.CodesResultatBLL;
@@ -31,7 +34,7 @@ public class ArticlesManager {
 	
 	// TODO : DAOFactory ?
 	public ArticlesManager() {
-		this.articleDao = DAOFactory.getArticleDAO();
+		this.articleDao = DAOFactory.getArticleDAO();//new ArticleDAOJdbcImpl();
 	}
 	
 
@@ -57,9 +60,9 @@ public class ArticlesManager {
 		article.setNom_article(nom_article);
 		article.setDescription(description);
 		article.setDate_debut_encheres(date_debut_encheres);
-		article.setHeure_debut_encheres(heure_debut_encheres);
+		//article.setHeure_debut_encheres(heure_debut_encheres);
 		article.setDate_fin_encheres(date_fin_encheres);
-		article.setHeure_fin_encheres(heure_fin_encheres);
+		//article.setHeure_fin_encheres(heure_fin_encheres);
 		article.setPrix_initial(prix_initial);
 		article.setNo_categorie(no_categorie);
 		//TODO : utilisateur test : no_utilisateur  = 1
@@ -76,6 +79,26 @@ public class ArticlesManager {
 
 		return article;
 		
+	}
+	
+	public ArrayList<Article> ListerArticles(
+			Integer no_utilisateur,String filtreNom ,Integer filtreNo_categorie,
+			boolean radioBoutonsAchatVente,boolean achatsEnCours,boolean achatsMesEncheres,boolean achatsMesAchats,
+			boolean ventesEnCours,boolean ventesNonDebutees,boolean ventesTerminees) throws BusinessException
+	{
+		Accueil accueil = new Accueil();
+		accueil.setNo_utilisateur(no_utilisateur);
+		accueil.setFiltreNom(filtreNom);
+		accueil.setFiltreNo_categorie(filtreNo_categorie);
+		accueil.setRadioBoutonsAchatVente(radioBoutonsAchatVente);
+		accueil.setAchatsEnCours(achatsEnCours);
+		accueil.setAchatsMesEncheres(achatsMesEncheres);
+		accueil.setAchatsMesAchats(achatsMesAchats);
+		accueil.setVentesEnCours(ventesEnCours);
+		accueil.setVentesNonDebutees(ventesNonDebutees);
+		accueil.setVentesTerminees(ventesTerminees);
+	
+		return articleDao.select(accueil);
 	}
 	
 	private void validerDateHeure(LocalDate date, LocalTime heure, BusinessException businessException, int erreurCode) {

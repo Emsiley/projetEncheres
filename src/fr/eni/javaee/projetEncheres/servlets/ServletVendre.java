@@ -157,7 +157,7 @@ public class ServletVendre extends HttpServlet {
 		else
 		{
 			
-			//J'ajoute le repas
+			//J'ajoute l'article
 			ArticlesManager articleManager = new ArticlesManager();
 			try {
 				art = articleManager.ajouterArticle(

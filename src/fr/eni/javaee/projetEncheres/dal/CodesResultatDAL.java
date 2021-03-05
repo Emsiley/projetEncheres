@@ -19,4 +19,8 @@ public abstract class CodesResultatDAL {
 	 * Echec de la lecture des Articles
 	 */
 	public static final int LECTURE_ARTICLES_ECHEC=10002;
+	/**
+	 * Echec de la lecture de la liste d'Articles affiché sur l'ecran d'accueil
+	 */
+	public static final int LECTURE_ACCUEIL_ECHEC=10003;
 }
