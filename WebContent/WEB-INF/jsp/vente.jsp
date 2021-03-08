@@ -46,14 +46,12 @@
 				<textarea rows="5" cols="30" id="description" name="description" ><%=request.getParameter("description")!=null?request.getParameter("description"):""%></textarea>
 			</div>
 			<div class="saisie">
-				<label for="date_debut_encheres">date et heure debut des enchères : </label>
+				<label for="date_debut_encheres">date debut des enchères : </label>
 				<input type="date" name="date_debut_encheres" value="<%=request.getParameter("date_debut_encheres")%>"/>
-				<input type="time" name="heure_debut_encheres" value="<%=request.getParameter("heure_debut_encheres")%>"/>
 			</div>
 			<div class="saisie">
 				<label for="date_fin_encheres">date fin des enchères : </label>
 				<input type="date" name="date_fin_encheres" value="<%=request.getParameter("date_fin_encheres")%>"/>
-				<input type="time" name="heure_fin_encheres" value="<%=request.getParameter("heure_fin_encheres")%>"/>
 			</div>
 			<div class="saisie"  style="visibility:hidden;">
 				<input type="number" name="no_categorie" value="1"/>

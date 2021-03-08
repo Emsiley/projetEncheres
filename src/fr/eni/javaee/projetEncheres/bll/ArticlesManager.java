@@ -39,16 +39,16 @@ public class ArticlesManager {
 	
 
 	
-	public Article ajouterArticle(String nom_article,String description,LocalDate date_debut_encheres,LocalTime heure_debut_encheres,
-			LocalDate date_fin_encheres,LocalTime heure_fin_encheres,int prix_initial,int no_categorie,int no_utilisateur,
+	public Article ajouterArticle(String nom_article,String description,LocalDate date_debut_encheres,
+			LocalDate date_fin_encheres,int prix_initial,int no_categorie,int no_utilisateur,
 			String rue,String code_postal,String ville) throws BusinessException
 	{
 		//TODO vérification métier
 		BusinessException businessException = new BusinessException();
 		this.validerString(nom_article,businessException,CodesResultatBLL.REGLE_ARTICLE_NOM_ERREUR);
 		this.validerString(description,businessException,CodesResultatBLL.REGLE_ARTICLE_DESCRIPTION_ERREUR);
-		this.validerDateHeure(date_debut_encheres, heure_debut_encheres, businessException,CodesResultatBLL.REGLE_ARTICLE_DATE_ET_HEURE_DEBUT_ERREUR);
-		this.validerDateHeure(date_fin_encheres, heure_fin_encheres, businessException,CodesResultatBLL.REGLE_ARTICLE_DATE_ET_HEURE_FIN_ERREUR);
+		this.validerDate(date_debut_encheres, businessException,CodesResultatBLL.REGLE_ARTICLE_DATE_ET_HEURE_DEBUT_ERREUR);
+		this.validerDate(date_fin_encheres, businessException,CodesResultatBLL.REGLE_ARTICLE_DATE_ET_HEURE_FIN_ERREUR);
 		this.validerInt(prix_initial, businessException,CodesResultatBLL.REGLE_ARTICLE_PRIX_INITIAL_ERREUR);
 		this.validerInt(no_categorie, businessException, CodesResultatBLL.REGLE_ARTICLE_NO_CATEGORIES_ERREUR);
 		this.validerString(rue,businessException,CodesResultatBLL.REGLE_RUE_ERREUR);
@@ -101,10 +101,10 @@ public class ArticlesManager {
 		return articleDao.select(accueil);
 	}
 	
-	private void validerDateHeure(LocalDate date, LocalTime heure, BusinessException businessException, int erreurCode) {
+	private void validerDate(LocalDate date, BusinessException businessException, int erreurCode) {
 		if(date==null || 
 			date.isAfter(LocalDate.now()) ||
-			(date.isEqual(LocalDate.now()) && heure.isAfter(LocalTime.now())))
+			(date.isEqual(LocalDate.now()) ))
 		{
 			businessException.ajouterErreur(erreurCode);
 		}

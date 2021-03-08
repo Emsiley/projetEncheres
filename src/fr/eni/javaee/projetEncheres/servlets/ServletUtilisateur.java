@@ -34,18 +34,19 @@ public class ServletUtilisateur extends HttpServlet {
 		UtilisateurManager utilisateurManager = new UtilisateurManager();
 		//String no_utilisateur = request.getParameter("no_utilisateur");
 		Utilisateur util = null;
-		
+		String nu = request.getParameter("no_utilisateur");
+		int no_utilisateur = Integer.parseInt(nu);
+
 		//TODO no utilisateur à définir
 		try {
-			util = utilisateurManager.RechercheUtilisateur(1);//no_utilisateur);
+			util = utilisateurManager.RechercheUtilisateur(no_utilisateur);
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		
-		// TODO set des attributes pour l'ecrans profil
-		
+		// TODO set des attributes pour l'ecrans profil	
 		request.setAttribute("no_utilisateur",util.getNo_utilisateur());
 		request.setAttribute("pseudo",util.getPseudo());
 		request.setAttribute("nom",util.getNom());

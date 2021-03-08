@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="fr.eni.javaee.projetEncheres.messages.LecteurMessage"%>
+<%@page import="fr.eni.javaee.projetEncheres.session.SessionUtilisateur"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,52 +12,91 @@
 
 <body>
 
+	<div class="contenu">
+		<%
+			List<Integer> listeCodesErreur = (List<Integer>)request.getAttribute("listeCodesErreur");
+			if(listeCodesErreur!=null)
+			{
+		%>
+				<p style="color:red;">Erreur, les choix de recherche n'ont pas aboutis :</p>
+		<%
+				for(int codeErreur:listeCodesErreur)
+				{
+		%>
+					<p><%=LecteurMessage.getMessageErreur(codeErreur)%></p>
+		<%	
+				}
+			}
+		%>
+<!-- 		request.setAttribute("no_utilisateur",util.getNo_utilisateur());
+		request.setAttribute("pseudo",util.getPseudo());
+		request.setAttribute("nom",util.getNom());
+		request.setAttribute("prenom",util.getPrenom());
+		request.setAttribute("email",util.getEmail());
+		request.setAttribute("telephone",util.getTelephone());
+		request.setAttribute("rue",util.getRue());
+		request.setAttribute("code_postal",util.getCode_postal());
+		request.setAttribute("ville",util.getVille());
+		request.setAttribute("credit",util.getCredit()); -->
 
+		<form action="<%=request.getContextPath()%>/Utilisateur" method="post">
 			<div class="saisie" style="visibility:hidden;">
-				<input type="number" name="no_utilisateur" value="1"/>
+				<input type="number" name="no_utilisateur" value="<%=request.getAttribute("no_utilisateur")%>"/>
 			</div>
 			<div class="saisie">
-				<label for="nom_article">Nom de L'article : </label>
-				<input type="text" id="nom_article" name="nom_article" type="text" value="<%=request.getParameter("nom_article")!=null?request.getParameter("nom_article"):""%>"/>
+				<label for="pseudo">pseudo : </label>
+				<input type="text" id="pseudo" name="pseudo" value="<%=request.getAttribute("pseudo")!=null?request.getAttribute("pseudo"):""%>"/>
 			</div>
 			<div class="saisie">
-				<label for="description">Description : </label>
-				<textarea rows="5" cols="30" id="description" name="description" ><%=request.getParameter("description")!=null?request.getParameter("description"):""%></textarea>
+				<label for="nom">nom : </label>
+				<input type="text" id="nom" name="nom" value="<%=request.getAttribute("nom")!=null?request.getAttribute("nom"):""%>"/>
 			</div>
 			<div class="saisie">
-				<label for="date_debut_encheres">date et heure debut des enchères : </label>
-				<input type="date" name="date_debut_encheres" value="<%=request.getParameter("date_debut_encheres")%>"/>
-				<input type="time" name="heure_debut_encheres" value="<%=request.getParameter("heure_debut_encheres")%>"/>
+				<label for="prenom">prenom : </label>
+				<input type="text" id="prenom" name="prenom" value="<%=request.getAttribute("prenom")!=null?request.getAttribute("prenom"):""%>"/>
 			</div>
 			<div class="saisie">
-				<label for="date_fin_encheres">date fin des enchères : </label>
-				<input type="date" name="date_fin_encheres" value="<%=request.getParameter("date_fin_encheres")%>"/>
-				<input type="time" name="heure_fin_encheres" value="<%=request.getParameter("heure_fin_encheres")%>"/>
-			</div>
-			<div class="saisie"  style="visibility:hidden;">
-				<input type="number" name="no_categorie" value="1"/>
-			</div>			
-			<div class="saisie">
-				<label for="prix_initial">Prix initial : </label>
-				<input type="number" name="prix_initial" value="<%=request.getParameter("prix_initial")!=null?request.getParameter("prix_initial"):"1"%>"/>
+				<label for="email">email : </label>
+				<input type="text" id="email" name="email" value="<%=request.getAttribute("email")!=null?request.getAttribute("email"):""%>"/>
 			</div>
 			<div class="saisie">
-				<label for="rue">Rue : </label>
-				<input type="text" name="rue" value="<%=request.getParameter("rue")!=null?request.getParameter("rue"):""%>"/>
+				<label for="telephone">telephone : </label>
+				<input type="text" id="telephone" name="telephone" value="<%=request.getAttribute("telephone")!=null?request.getAttribute("telephone"):""%>"/>
 			</div>
 			<div class="saisie">
-				<label for="code_postal">Code postal : </label>
-				<input type="text" name="code_postal" value="<%=request.getParameter("code_postal")!=null?request.getParameter("code_postal"):""%>"/>
+				<label for="rue">rue : </label>
+				<input type="text" id="rue" name="rue" value="<%=request.getAttribute("rue")!=null?request.getAttribute("rue"):""%>"/>
 			</div>
 			<div class="saisie">
-				<label for="ville">Ville : </label>
-				<input type="text" name="ville" value="<%=request.getParameter("ville")!=null?request.getParameter("ville"):""%>"/>
-			</div>							
+				<label for="code_postal">code_postal : </label>
+				<input type="text" id="code_postal" name="code_postal" value="<%=request.getAttribute("code_postal")!=null?request.getAttribute("code_postal"):""%>"/>
+			</div>
+			<div class="saisie">
+				<label for="ville">ville : </label>
+				<input type="text" id="ville" name="ville" value="<%=request.getAttribute("ville")!=null?request.getAttribute("ville"):""%>"/>
+			</div>
+			<div class="saisie">
+				<label for="credit">credit : </label>
+				<input type="text" id="credit" name="credit" value="<%=request.getAttribute("credit")!=null?request.getAttribute("credit"):""%>"/>
+			</div>
+			
 			
 			<div>
-				<input type="submit" value="Rechercher"/>
+				<%
+				if(SessionUtilisateur.getSessionNo_utilisateur()!= null 
+					&&	(String.valueOf(SessionUtilisateur.getSessionNo_utilisateur())).equals(request.getAttribute("no_utilisateur")))
+				{
+				%>
+				<input type="submit" value="Modifier"/>
+				<%	
+				}
+				%>
+			
 				<a href="<%=request.getContextPath()%>"><input type="button" value="retour"/></a>
 			</div>
+		</form>
+
 
 </body>
 </html>
+

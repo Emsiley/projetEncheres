@@ -15,7 +15,10 @@ public class UtilisateurManager {
 	public Utilisateur RechercheUtilisateur(int no_utilisateur) throws BusinessException {
 		Utilisateur utl=null;
 		//TODO : regles metier utilisateur en fonction de no_utilisateur
+		
 		utl=this.utilisateurDAO.select(no_utilisateur);
+		
+		
 		return utl;
 	}
 }

@@ -57,9 +57,7 @@ public class ServletVendre extends HttpServlet {
 	    String nom_article=null;                   //VARCHAR(30) NOT NULL,
 	    String description=null;                   //VARCHAR(300) NOT NULL,
 		LocalDate date_debut_encheres=null;           //DATE NOT NULL,
-		LocalTime heure_debut_encheres=null;
 		LocalDate date_fin_encheres=null;             //DATE NOT NULL,
-		LocalTime heure_fin_encheres=null;
 	    int prix_initial=0;                  //INTEGER,
 	    int no_utilisateur=1;                //INTEGER NOT NULL,
 	    int no_categorie=1;                  //INTEGER NOT NULL
@@ -82,8 +80,6 @@ public class ServletVendre extends HttpServlet {
 		{
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			date_debut_encheres = LocalDate.parse(request.getParameter("date_debut_encheres"),dtf);
-			DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm");
-			heure_debut_encheres= LocalTime.parse(request.getParameter("heure_debut_encheres"),dtf1);
 		}
 		catch(DateTimeParseException e)
 		{
@@ -94,8 +90,6 @@ public class ServletVendre extends HttpServlet {
 		{
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			date_fin_encheres = LocalDate.parse(request.getParameter("date_fin_encheres"),dtf);
-			DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm");
-			heure_fin_encheres= LocalTime.parse(request.getParameter("heure_fin_encheres"),dtf1);
 		}
 		catch(DateTimeParseException e)
 		{
@@ -162,8 +156,8 @@ public class ServletVendre extends HttpServlet {
 			try {
 				art = articleManager.ajouterArticle(
 						nom_article,description,
-						date_debut_encheres,heure_debut_encheres,
-						date_fin_encheres,heure_fin_encheres,
+						date_debut_encheres,
+						date_fin_encheres,
 						prix_initial,
 						no_categorie,no_utilisateur,
 						rue,code_postal,ville);
