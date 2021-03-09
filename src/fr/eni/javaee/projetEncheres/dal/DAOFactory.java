@@ -12,7 +12,8 @@ public abstract class DAOFactory {
 	}
 	
 	public static UtilisateurDAO getUtilisateurDAO() {
-		return new UtilsateurDAOMock();
+		//return new UtilsateurDAOMock();
+		return new UtilisateurDAOJdbcImpl();
 	}
 }
 	

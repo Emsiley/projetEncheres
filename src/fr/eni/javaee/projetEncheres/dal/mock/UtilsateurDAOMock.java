@@ -21,6 +21,24 @@ public class UtilsateurDAOMock implements UtilisateurDAO {
 		utl.setRue("rue de la charcuterie");
 		utl.setCode_postal("07000");
 		utl.setVille("St jean pied de porc");
+		utl.setCredit(600);
+		utl.setMot_de_passe("pws");
 		return utl;
+	}
+
+	@Override
+	public Utilisateur insert(String pseudo, String nom, String prenom, String email, String telephone, String rue,
+			String code_postal, String ville, String mot_de_passe, int credit, boolean administrateur)
+			throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Utilisateur update(int no_utilisateur, String pseudo, String nom, String prenom, String email,
+			String telephone, String rue, String code_postal, String ville, String mot_de_passe, int credit,
+			boolean administrateur) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

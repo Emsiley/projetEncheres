@@ -94,6 +94,7 @@ public class ServletAccueil extends HttpServlet {
 		{
 			e.printStackTrace();
 			//listeCodesErreur.add(CodesResultatServlets.FORMAT_ARTICLE_NO_CATEGORIES_ERREUR);
+			filtreNo_categorie = 1;
 		}
 		
 		Integer choixAchats = null;
