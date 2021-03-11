@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="fr.eni.javaee.projetEncheres.messages.LecteurMessage"%>
 <%@page import="fr.eni.javaee.projetEncheres.session.SessionUtilisateur"%>
@@ -11,6 +10,39 @@
 </head>
 
 <body>
+	
+	<header>
+		<h1>
+			<a href="<%= request.getContextPath() %>">
+				ENI-Enchères
+			</a>
+		</h1>
+		
+		<nav>
+			<ul class="menu">
+		       <li>
+		           	<a href="<%=request.getContextPath()%>/Accueil">
+		           		Enchères	
+		           	</a>		           
+		       </li>
+		       <li>
+		           	<a href="<%=request.getContextPath()%>/vendre">
+		          		Vendre un article
+		           	</a>
+		       </li>
+		       <li>
+		           	<a href="<%= request.getContextPath() %>/Utilisateur?no_utilisateur=1">
+		           		Mon profil
+		           	</a>		     
+		       </li>
+		       <li>
+		           	<a href="#">
+			           Déconnexion
+		           	</a>		     
+		       </li>
+		   	</ul>  
+	   	</nav>
+    </header>
 
 	<div class="contenu">
 		<%

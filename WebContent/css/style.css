@@ -1,26 +1,186 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
+
+body
+{
+	font-size: 1rem;
+	line-height: 140%;
+	font-family: "Roboto Slab", sans-serif !important;
+	margin: 0;
+	padding: 0;
+} 
+
+ul
+{
+	list-style: none;
+	padding: 0;
+	text-align: left;
+}
+
+button, .button, input[type="button"], input[type="submit"]
+{
+	font-family: "Roboto Slab", sans-serif !important;
+	display: inline-block;
+  	background: #AB95C5;
+  	color: black;
+  	padding: 0.3em 1em;
+  	border-radius: 0.3em;
+  	border: none;
+  	cursor: pointer;
+	transition: all 200ms linear;
+	font-size: 1em;
+	text-decoration: none;
+	color: #4C344A;
+}
+
+button:hover, .button:hover, input[type="button"]:hover, input[type="submit"]:hover
+{
+	background: #4C344A;
+	color: white;
+}
+
+nav
+{
+	display: flex;
+	text-align: right;
+}
+
+ul.menu
+{
+	list-style: none;
+	display: flex;	
+	margin: 0;
+}
+
+header
+{
+  	display: flex; 
+  	justify-content: space-between;
+  	align-items: center;
+  	background: #AB95C5;
+	color: #4C344A;
+}
+
 h1
 {
-	text-align: center;
+	margin: 0;
+	padding: 0 0.3em;
 }
-.contenu
+
+h1 > a
+{	
+	color: #4C344A !important; 
+	text-decoration: none !important;
+}
+
+h1:hover, h1 > a:hover
 {
-	padding: 20px;
+	color: white !important;
+}
+
+ul.menu > li > a
+{
+	display: block;
+	color: black;
+	text-decoration: none;
+	padding: .6em;
+	transition: all 200ms linear;
+}
+
+ul.menu > li > a:hover
+{
+	background: #4C344A;
+	color: white;
+	text-align: left;
+}
+
+h2
+{
 	text-align: center;
 }
+
+h3
+{
+	margin: 1em 0 0;
+	padding: 0;
+	text-align: center;
+}
+
+.articles
+{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.articles > article
+{
+	border: 2px solid black;
+	border-radius: 5px;
+	margin: 15px;
+	padding: 1em; 
+	background: #fff;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: auto;
+}
+
+.articles > article > div:last-child
+{
+	margin-left: 1em;
+}
+
+img 
+{
+	width: 150px;
+	height: 150px;
+}
+
+.content
+{
+	margin: 0 10%;
+}
+
+.search_filters
+{
+	display: flex;
+	justify-content: center;
+}
+
+.search_filters > ul
+{
+	margin: 1em;
+}
+
+form
+{
+	text-align: center;
+}
+
 .saisie
 {
-	padding:5px;
+	text-align: center;
 }
-label
+
+.saisie > label
 {
-	text-align:left;
+	display: block;
+	margin: auto;
 }
-thead
+
+.saisie > input, .saisie > textarea
 {
-	font-weight: bolder;
+	display: block;
+	width: 400px; 
+	border: 2px solid #4C344A;
+	border-radius: 5px; 
+	padding: 0.3em 1em;
+	margin: 0.5em auto;
+	text-align: center;
 }
-li
+
+ .no-result
 {
-	text-align: left;
+	text-align: center;
+	margin-top: 1em;
 }

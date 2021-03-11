@@ -10,22 +10,58 @@
 <title>Vendre</title>
 </head>
 <body>
+	
+	<header>
+		<h1>
+			<a href="<%= request.getContextPath() %>">
+				ENI-Enchères
+			</a>
+		</h1>
+		
+		<nav>
+			<ul class="menu">
+		       <li>
+		           	<a href="<%=request.getContextPath()%>/Accueil">
+		           		Enchères	
+		           	</a>		           
+		       </li>
+		       <li>
+		           	<a href="<%=request.getContextPath()%>/vendre">
+		          		Vendre un article
+		           	</a>
+		       </li>
+		       <li>
+		           	<a href="<%= request.getContextPath() %>/Utilisateur?no_utilisateur=1">
+		           		Mon profil
+		           	</a>		     
+		       </li>
+		       <li>
+		           	<a href="#">
+			           Déconnexion
+		           	</a>		     
+		       </li>
+		   	</ul>  
+	   	</nav>
+    </header>
+   
+    <h2>
+	    Vendre un article
+    </h2>
+	    
 	<div class="contenu">
 		<%
 			List<Integer> listeCodesErreur = (List<Integer>)request.getAttribute("listeCodesErreur");
-			if(listeCodesErreur!=null)
-			{
+			if( listeCodesErreur != null ) {
 		%>
-				<p style="color:red;">Erreur, l'article à vendre n'a pas pu être ajouté :</p>
-		<%
-				for(int codeErreur:listeCodesErreur)
-				{
-		%>
-					<p><%=LecteurMessage.getMessageErreur(codeErreur)%></p>
-		<%	
-				}
-			}
-		%>
+			<div style="text-align: center;">Les erreurs suivantes sont survenues lors de l'ajout de votre vente</div>
+			<ul style="text-align: center;">
+			<% for( int codeErreur:listeCodesErreur ) { %>
+				<li class="erreur" style="color: red">
+					<%= LecteurMessage.getMessageErreur( codeErreur )%>
+				</li>
+			<% } %>
+			</ul>
+		<% } %>
 		<%
 		//TODO à remplacer
 		request.setAttribute("no_utilisateur", "1"); //à prendre dans la session 
