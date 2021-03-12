@@ -20,9 +20,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			+ "values(?,?,?,?)";
 	
 	private static final String FILTRE_UTILISATEUR = "[no_utilisateur] = ? ";
-	//private static final String FILTRE_ARTICLE = " AND [nom_article] like '%?%' ";
 	private static final String FILTRE_ARTICLE = " AND [nom_article] like '%'+?+'%' ";
-	//private static final String FILTRE_ARTICLE = " AND [nom_article] like ? ";
 	private static final String FILTRE_CATEGORIE = " AND [no_categorie] = ? ";
 	private static final String TRIE_ARTICLES = " ORDER BY date_debut_encheres desc, [ARTICLES_VENDUS].[no_article] desc ";
 	
@@ -79,17 +77,12 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				
 				//ARTICLES_VENDUS
 				PreparedStatement pstmt = cnx.prepareStatement(INSERT_ARTICLE, PreparedStatement.RETURN_GENERATED_KEYS);
-				//nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,no_utilisateur,no_categorie
 				pstmt.setString(1, article.getNom_article());
 				pstmt.setString(2,article.getDescription());
 				pstmt.setDate(3, java.sql.Date.valueOf(article.getDate_debut_encheres()));
 				pstmt.setDate(4, java.sql.Date.valueOf(article.getDate_fin_encheres()));
 				pstmt.setInt(5, article.getPrix_initial());
-				//no_utilisateur	pseudo	nom		prenom
-				//1					test	test	test
 				pstmt.setInt(6, article.getNo_utilisateur());
-				//no_categorie	libelle
-				//1				divers
 				pstmt.setInt(7, article.getNo_categorie());
 
 				pstmt.executeUpdate();
@@ -133,7 +126,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	@Override
 	public ArrayList<Article> select(Accueil accueil) throws BusinessException {
 		ArrayList<Article> listArticle = new ArrayList<Article>();
-		//TODO : aller chercher dans la base de donnés
 		if(accueil==null)
 		{
 			BusinessException businessException = new BusinessException();
@@ -179,7 +171,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 					selectAll = selectAll + FILTRE_ARTICLE;
 				}
 				if (accueil.getFiltreNo_categorie() != null && accueil.getFiltreNo_categorie() > 0) {
-					//TODO : selectAll = selectAll + FILTRE_CATEGORIE;
+					selectAll = selectAll + FILTRE_CATEGORIE;
 				}
 				//Ajout du trie
 				selectAll = selectAll +TRIE_ARTICLES ;
@@ -232,7 +224,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		articleCourant.setPrix_vente(rs.getInt("prix_vente"));
 		articleCourant.setNo_utilisateur(rs.getInt("no_utilisateur"));
 		articleCourant.setNo_categorie(rs.getInt("no_categorie"));
-		//articleCourant.setHeure(rs.getTime("heure_repas").toLocalTime());
+		
 		return articleCourant;
 	}
 

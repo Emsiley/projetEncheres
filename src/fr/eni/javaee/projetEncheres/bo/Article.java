@@ -8,9 +8,7 @@ public class Article {
     String nom_article;                   //VARCHAR(30) NOT NULL,
     String description;                   //VARCHAR(300) NOT NULL,
 	LocalDate date_debut_encheres;           //DATE NOT NULL,
-	//LocalTime heure_debut_encheres;
 	LocalDate date_fin_encheres;             //DATE NOT NULL,
-	//LocalTime heure_fin_encheres;
     int prix_initial=0;                  //INTEGER,
     int prix_vente=0;                    //INTEGER,
     int no_utilisateur=0;                //INTEGER NOT NULL,
@@ -73,18 +71,6 @@ public class Article {
 	public void setNo_categorie(int no_categorie) {
 		this.no_categorie = no_categorie;
 	}
-//	public LocalTime getHeure_debut_encheres() {
-//		return heure_debut_encheres;
-//	}
-//	public void setHeure_debut_encheres(LocalTime heure_debut_encheres) {
-//		this.heure_debut_encheres = heure_debut_encheres;
-//	}
-//	public LocalTime getHeure_fin_encheres() {
-//		return heure_fin_encheres;
-//	}
-//	public void setHeure_fin_encheres(LocalTime heure_fin_encheres) {
-//		this.heure_fin_encheres = heure_fin_encheres;
-//	}
 	public Retrait getRetrait() {
 		return retrait;
 	}

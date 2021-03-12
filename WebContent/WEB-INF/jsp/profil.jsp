@@ -28,16 +28,7 @@
 				}
 			}
 		%>
-<!-- 		request.setAttribute("no_utilisateur",util.getNo_utilisateur());
-		request.setAttribute("pseudo",util.getPseudo());
-		request.setAttribute("nom",util.getNom());
-		request.setAttribute("prenom",util.getPrenom());
-		request.setAttribute("email",util.getEmail());
-		request.setAttribute("telephone",util.getTelephone());
-		request.setAttribute("rue",util.getRue());
-		request.setAttribute("code_postal",util.getCode_postal());
-		request.setAttribute("ville",util.getVille());
-		request.setAttribute("credit",util.getCredit()); -->
+
 
 		<form action="<%=request.getContextPath()%>/Utilisateur" method="post">
 			<div class="saisie" style="visibility:hidden;">
@@ -133,7 +124,6 @@
 		%>
 		
 
-			
 			
 			<div>
 				<a href="<%=request.getContextPath()%>"><input type="button" value="retour"/></a>
